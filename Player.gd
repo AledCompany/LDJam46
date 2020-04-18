@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+class_name Player
+
 
 const gravity = 9810
 export var speed = 600
@@ -30,14 +32,9 @@ func _physics_process(delta):
 			velocity += Vector2.UP * 2000
 	
 	velocity = move_and_slide(velocity, Vector2.UP)
-	print(velocity)
+#	print(velocity)
 	pass
 
 func _on_DeathZone_body_entered(body):
 	get_tree().reload_current_scene();
-	pass # Replace with function body.
-
-func _on_TrampolineArea_body_entered(body):
-#	velocity += Vector2.UP * 1000
-#	print(velocity)
 	pass # Replace with function body.
