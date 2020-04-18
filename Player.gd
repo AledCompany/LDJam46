@@ -2,8 +2,8 @@ extends KinematicBody2D
 
 
 const gravity = 9810
-export var speed = 1000
-export var acceleration = 200
+export var speed = 600
+export var acceleration = 300
 export var direction = Vector2.RIGHT
 var velocity = Vector2.ZERO
 
@@ -25,7 +25,9 @@ func _physics_process(delta):
 	velocity.y += gravity * delta
 	
 	if is_on_floor():
-		velocity.x += acceleration * delta
+		velocity.x = min(velocity.x + acceleration * delta, speed)
+		if Input.is_action_just_pressed("jump"):
+			velocity += Vector2.UP * 2000
 	
 	velocity = move_and_slide(velocity, Vector2.UP)
 	print(velocity)
