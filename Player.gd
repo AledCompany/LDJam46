@@ -23,3 +23,8 @@ func _physics_process(delta):
 	print(velocity)
 	move_and_slide(velocity, Vector2.UP)
 	pass
+
+
+func _on_DeathZone_body_entered(body):
+	get_tree().reload_current_scene()
+	pass # Replace with function body.
