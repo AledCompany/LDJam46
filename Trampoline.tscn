@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 22.4006, 20.0734 )
+
+[node name="Trampoline" type="KinematicBody2D"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2( 331.235, 440.57 )
+polygon = PoolVector2Array( -6.06726, 6.82947, 48.4763, -35.6028, 49.3084, 6.81543 )
+
+[node name="Sprite" type="Sprite" parent="."]
+
+[node name="TrampolineArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TrampolineArea"]
+position = Vector2( 353.012, 427.567 )
+shape = SubResource( 4 )
