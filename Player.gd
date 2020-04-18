@@ -4,7 +4,7 @@ class_name Player
 
 
 const gravity = 9810
-export var speed = 600
+export var speed = 300
 export var acceleration = 300
 export var direction = Vector2.RIGHT
 var velocity = Vector2.ZERO
@@ -27,7 +27,7 @@ func _physics_process(delta):
 	velocity.y += gravity * delta
 	
 	if is_on_floor():
-		velocity.x = min(velocity.x + acceleration * delta, speed)
+		velocity.x = lerp(velocity.x , speed * direction.x, acceleration * delta)
 		if Input.is_action_just_pressed("jump"):
 			velocity += Vector2.UP * 2000
 	

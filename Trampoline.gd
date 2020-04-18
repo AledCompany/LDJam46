@@ -1,6 +1,7 @@
 extends KinematicBody2D
 
-export var impulse = 2000
+export var y_impulse = 2000
+export var x_impulse = 3000
 
 
 # Declare member variables here. Examples:
@@ -21,5 +22,6 @@ func _ready():
 func _on_TrampolineArea_body_entered(body):
 	if body is Player:
 		print("le player veut sauter")
-		body.velocity.y += Vector2.UP.y * impulse
+		body.velocity += Vector2.UP * y_impulse + body.direction * x_impulse
+		print(body.velocity)
 	pass # Replace with function body.
