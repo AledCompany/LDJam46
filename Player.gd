@@ -27,7 +27,7 @@ func _physics_process(delta):
 	velocity.y += gravity * delta
 	
 	if is_on_floor():
-		velocity.x = lerp(velocity.x , speed * direction.x, acceleration * delta)
+		velocity.x = lerp(velocity.x , speed * direction.x, 10*delta)
 		if Input.is_action_just_pressed("jump"):
 			velocity += Vector2.UP * 2000
 	

@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 export var y_impulse = 2000
-export var x_impulse = 3000
+export var x_impulse = 500
 
 
 # Declare member variables here. Examples:
