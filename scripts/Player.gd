@@ -24,6 +24,7 @@ func _physics_process(delta):
 			$AnimatedSprite.play("run")
 			isGrounded = true
 		velocity.x = lerp(velocity.x , speed * direction.x, acceleration * delta)
+
 		if Input.is_action_just_pressed("jump"):
 			velocity += Vector2.UP * 2000		
 	
