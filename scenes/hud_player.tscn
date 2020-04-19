@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://asset/buttons/test_button_pressed.png" type="Texture" id=1]
+[ext_resource path="res://asset/buttons/test_button.png" type="Texture" id=2]
+[ext_resource path="res://asset/buttons/button_trampo.png" type="Texture" id=3]
+[ext_resource path="res://asset/buttons/button_trampo_pressed.png" type="Texture" id=4]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="Control" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -854.0
+margin_bottom = -480.0
+rect_scale = Vector2( 3, 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Container" type="HBoxContainer" parent="Control"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -40.0
+margin_right = 426.0
+rect_min_size = Vector2( 0, 40 )
+custom_constants/separation = 16
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ButtonTrampo" type="TextureButton" parent="Control/Container"]
+margin_left = 165.0
+margin_right = 205.0
+margin_bottom = 40.0
+action_mode = 0
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 4 )
+
+[node name="ButtonWool" type="TextureButton" parent="Control/Container"]
+margin_left = 221.0
+margin_right = 261.0
+margin_bottom = 40.0
+action_mode = 0
+texture_normal = ExtResource( 2 )
+texture_pressed = ExtResource( 1 )

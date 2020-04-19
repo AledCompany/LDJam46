@@ -3,7 +3,7 @@ extends KinematicBody2D
 var gravity = 9.81
 var velocity = Vector2.ZERO
 
-var x_impulse = 500
+var x_impulse = 400
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
