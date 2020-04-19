@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://scenes/objects/Trampoline.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/objects/ItemInvoker.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://icon.png" type="Texture" id=4]
 [ext_resource path="res://asset/decors/sol.png" type="Texture" id=5]
 [ext_resource path="res://scenes/traps/FlowerPot.tscn" type="PackedScene" id=6]
+[ext_resource path="res://asset/objet/platforme_ressort1.png" type="Texture" id=7]
 [ext_resource path="res://scenes/objects/Wool.tscn" type="PackedScene" id=8]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
@@ -198,6 +199,8 @@ extents = Vector2( 5651.44, 765.667 )
 
 [node name="World" type="Node2D"]
 
+[node name="ItemInvoker" parent="." instance=ExtResource( 2 )]
+
 [node name="objects" type="Node2D" parent="."]
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -212,11 +215,9 @@ tile_data = PoolIntArray( 262152, 1, 196609, 262153, 1, 196611, 327693, 1, 19660
 position = Vector2( 18, 213 )
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
-offset = Vector2( 125, 0 )
+offset = Vector2( 200, 0 )
 current = true
-zoom = Vector2( 0.33, 0.33 )
-process_mode = 0
-smoothing_enabled = true
+zoom = Vector2( 0.5, 0.5 )
 
 [node name="Trampoline" parent="." instance=ExtResource( 1 )]
 position = Vector2( 1378.3, 448.348 )
@@ -230,11 +231,69 @@ position = Vector2( 141, 219 )
 position = Vector2( 4513.58, 1732.52 )
 shape = SubResource( 18 )
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -76.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Container" type="HBoxContainer" parent="CanvasLayer/Control"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -64.0
+custom_constants/separation = 6
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ButtonTrampo" type="TextureButton" parent="CanvasLayer/Control/Container"]
+margin_left = 449.0
+margin_right = 481.0
+margin_bottom = 64.0
+texture_normal = ExtResource( 7 )
+
+[node name="ButtonWool" type="TextureButton" parent="CanvasLayer/Control/Container"]
+margin_left = 487.0
+margin_right = 551.0
+margin_bottom = 64.0
+texture_normal = ExtResource( 4 )
+
+[node name="TextureButton3" type="TextureButton" parent="CanvasLayer/Control/Container"]
+margin_left = 557.0
+margin_right = 621.0
+margin_bottom = 64.0
+texture_normal = ExtResource( 4 )
+
+[node name="TextureButton4" type="TextureButton" parent="CanvasLayer/Control/Container"]
+margin_left = 627.0
+margin_right = 691.0
+margin_bottom = 64.0
+texture_normal = ExtResource( 4 )
+
+[node name="TextureButton5" type="TextureButton" parent="CanvasLayer/Control/Container"]
+margin_left = 697.0
+margin_right = 761.0
+margin_bottom = 64.0
+texture_normal = ExtResource( 4 )
+
+[node name="TextureButton6" type="TextureButton" parent="CanvasLayer/Control/Container"]
+margin_left = 767.0
+margin_right = 831.0
+margin_bottom = 64.0
+texture_normal = ExtResource( 4 )
+
 [node name="FlowerPot" parent="." instance=ExtResource( 6 )]
 position = Vector2( 269, 123 )
 
 [node name="Wool" parent="." instance=ExtResource( 8 )]
 position = Vector2( 296, 214 )
-
-[node name="ItemInvoker" parent="." instance=ExtResource( 2 )]
 [connection signal="body_entered" from="DeathZone" to="Player" method="_on_DeathZone_body_entered"]
+[connection signal="pressed" from="CanvasLayer/Control/Container/ButtonTrampo" to="ItemInvoker" method="_on_ButtonTrampo_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/Container/ButtonWool" to="ItemInvoker" method="_on_ButtonWool_pressed"]
