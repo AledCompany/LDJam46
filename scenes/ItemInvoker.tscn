@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://scripts/ItemInvoker.gd" type="Script" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://asset/objet/platforme_ressort1.png" type="Texture" id=3]
 
 [node name="ItemInvoker" type="Node2D"]
 script = ExtResource( 1 )
@@ -10,11 +11,14 @@ script = ExtResource( 1 )
 visible = false
 
 [node name="Sprite" type="Sprite" parent="TrampolineInvoker"]
-texture = ExtResource( 2 )
+position = Vector2( -2.15091, -22.5846 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 3 )
 
 [node name="testInvoke" type="Node2D" parent="."]
 
 [node name="Sprite" type="Sprite" parent="testInvoke"]
 modulate = Color( 0.439216, 0.207843, 0.207843, 1 )
-scale = Vector2( 4.31544, 4.31544 )
+position = Vector2( 1.71475, 2.57213 )
+scale = Vector2( 1.07946, 1.07946 )
 texture = ExtResource( 2 )
