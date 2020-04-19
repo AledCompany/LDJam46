@@ -3,7 +3,7 @@ extends KinematicBody2D
 var gravity = 9.81
 var velocity = Vector2.ZERO
 
-var x_impulse = 1000
+var x_impulse = 500
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
@@ -13,6 +13,5 @@ func _physics_process(delta):
 
 func _on_DetectionArea_body_entered(body):
 	if body is Player:
-		body.velocity += body.direction * x_impulse
-		body.setAnimationJumping()
+		body.set_impulse(body.direction * x_impulse)
 	pass # Replace with function body.

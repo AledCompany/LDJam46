@@ -5,8 +5,8 @@ class_name ItemInvoker
 var currentItem
 var currentScene
 
-var _sceneTrampoline = preload("res://scenes/Trampoline.tscn")
-var _sceneWool = preload("res://scenes/Wool.tscn")
+var _sceneTrampoline = preload("res://scenes/objects/Trampoline.tscn")
+var _sceneWool = preload("res://scenes/objects/Wool.tscn")
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -47,7 +47,7 @@ func _invokeScene():
 	if currentScene != null:
 		var instance = currentScene.instance()
 		instance.position = self.position
-		get_parent().add_child(instance)
+		get_parent().get_node("objects").add_child(instance)
 
 
 func _on_ButtonWool_pressed():

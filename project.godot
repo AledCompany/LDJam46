@@ -33,7 +33,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Ld Jam 46"
-run/main_scene="res://scenes/World.tscn"
+run/main_scene="res://scenes/main.tscn"
 config/icon="res://icon.png"
 
 [display]
@@ -41,7 +41,7 @@ config/icon="res://icon.png"
 window/size/width=1280
 window/size/height=720
 window/stretch/mode="viewport"
-window/stretch/aspect="keep"
+window/stretch/aspect="keep_height"
 
 [importer_defaults]
 

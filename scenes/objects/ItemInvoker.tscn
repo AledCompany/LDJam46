@@ -1,24 +1,23 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://scripts/ItemInvoker.gd" type="Script" id=1]
-[ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://asset/objet/wool/wool.png" type="Texture" id=2]
 [ext_resource path="res://asset/objet/platforme_ressort1.png" type="Texture" id=3]
 
 [node name="ItemInvoker" type="Node2D"]
+modulate = Color( 0, 1, 1, 0.784314 )
 script = ExtResource( 1 )
 
 [node name="TrampolineInvoker" type="Node2D" parent="."]
 visible = false
 
 [node name="Sprite" type="Sprite" parent="TrampolineInvoker"]
-position = Vector2( -2.15091, -22.5846 )
-scale = Vector2( 2, 2 )
+position = Vector2( -1, -7 )
 texture = ExtResource( 3 )
 
 [node name="WoolInvoker" type="Node2D" parent="."]
 visible = false
 
 [node name="Sprite" type="Sprite" parent="WoolInvoker"]
-position = Vector2( 0.35849, -18.2828 )
 scale = Vector2( 0.543651, 0.543651 )
 texture = ExtResource( 2 )

@@ -3,13 +3,14 @@ extends KinematicBody2D
 class_name Player
 
 
-const gravity = 3000
+const gravity = 1000
 
-export var speed = 100
-export var acceleration = 10
+export var speed = 50
+export var acceleration = 5
 
 export var direction = Vector2.RIGHT
 var velocity = Vector2.ZERO
+var impulse = Vector2.ZERO
 
 var isJumping = false
 
@@ -22,34 +23,29 @@ func _ready():
 func _physics_process(delta):	
 	velocity.y += gravity * delta
 	
-	if isJumping && velocity.y >= 0:
-		$AnimatedSprite.frame = 0
-		$AnimatedSprite.play("fall")
-		$Label.text = "Falling"
+	velocity.x = lerp(velocity.x , speed * direction.x, acceleration * delta)
 	
-	if is_on_floor():
-		if isJumping && velocity.y >= 0:
-			$Label.text = "Running"
-			$AnimatedSprite.play("run")
-			isJumping = false
-		velocity.x = lerp(velocity.x , speed * direction.x, acceleration * delta)
+	velocity = move_and_slide(velocity if impulse==Vector2.ZERO else impulse, Vector2.UP)
+	impulse=Vector2.ZERO
+	animation(is_on_floor(),velocity.y>0)
 
-		if Input.is_action_just_pressed("jump"):
-			velocity += Vector2.UP * 2000
-	
-	velocity = move_and_slide(velocity, Vector2.UP)
-	pass
+func animation(is_on_floor=false,is_falling=true):
+	if is_on_floor:
+		$AnimatedSprite.play("run")
+	else:
+		if is_falling:
+			$AnimatedSprite.play("fall")
+		else:
+			$AnimatedSprite.play("jump")
+
+func set_impulse(new_impulse):
+	impulse=new_impulse
 
 func _on_DeathZone_body_entered(body):
 	if body == self:
 		kill()
 	pass # Replace with function body.
-	
-func setAnimationJumping():
-	$AnimatedSprite.frame = 0
-	$AnimatedSprite.play("jump")
-	$Label.text = "Jumping"
-	isJumping = true
+
 
 func kill():
 	print("Player is dead...")
