@@ -4,10 +4,11 @@ class_name Player
 
 
 const gravity = 9810
-export var speed = 300
-export var acceleration = 300
+export var speed = 100
+export var acceleration = 10
 export var direction = Vector2.RIGHT
 var velocity = Vector2.ZERO
+var isGrounded = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -16,25 +17,23 @@ func _ready():
 
 
 func _physics_process(delta):	
-#	if is_on_floor() :
-#		velocity.x = lerp(velocity.x, speed, acceleration * delta)
-#		if Input.is_action_just_pressed("jump"):
-#			velocity += Vector2.UP * 2000
-#	else:
-#		velocity += gravity * delta * Vector2.DOWN
-#	print(velocity)
-#	velocity = move_and_slide(velocity, Vector2.UP)
 	velocity.y += gravity * delta
 	
 	if is_on_floor():
+		if !isGrounded:
+			$AnimatedSprite.play("run")
+			isGrounded = true
 		velocity.x = lerp(velocity.x , speed * direction.x, acceleration * delta)
 		if Input.is_action_just_pressed("jump"):
-			velocity += Vector2.UP * 2000
+			velocity += Vector2.UP * 2000		
 	
 	velocity = move_and_slide(velocity, Vector2.UP)
-#	print(velocity)
 	pass
 
 func _on_DeathZone_body_entered(body):
 	get_tree().reload_current_scene();
 	pass # Replace with function body.
+	
+func setAnimationJumping():
+	$AnimatedSprite.play("jump")
+	isGrounded = false

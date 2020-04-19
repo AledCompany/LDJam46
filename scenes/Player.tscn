@@ -1,11 +1,17 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://asset/player/run/run1.png" type="Texture" id=1]
-[ext_resource path="res://Player.gd" type="Script" id=2]
+[ext_resource path="res://scripts/Player.gd" type="Script" id=2]
 [ext_resource path="res://asset/player/run/run2.png" type="Texture" id=3]
 [ext_resource path="res://asset/player/run/run3.png" type="Texture" id=4]
 [ext_resource path="res://asset/player/idle.png" type="Texture" id=5]
 [ext_resource path="res://asset/player/run/run4.png" type="Texture" id=6]
+[ext_resource path="res://asset/player/jump/jump3.png" type="Texture" id=7]
+[ext_resource path="res://asset/player/jump/jump2.png" type="Texture" id=8]
+[ext_resource path="res://asset/player/jump/jump1.png" type="Texture" id=9]
+[ext_resource path="res://asset/player/fall/fall2.png" type="Texture" id=10]
+[ext_resource path="res://asset/player/fall/fall1.png" type="Texture" id=11]
+
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -17,6 +23,16 @@ animations = [ {
 "frames": [ ExtResource( 1 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 6 ) ],
 "loop": true,
 "name": "run",
+"speed": 8.0
+}, {
+"frames": [ ExtResource( 9 ), ExtResource( 8 ), ExtResource( 7 ) ],
+"loop": false,
+"name": "jump",
+"speed": 8.0
+}, {
+"frames": [ ExtResource( 11 ), ExtResource( 10 ) ],
+"loop": false,
+"name": "fall",
 "speed": 8.0
 } ]
 
@@ -30,7 +46,7 @@ script = ExtResource( 2 )
 scale = Vector2( 2, 2 )
 frames = SubResource( 1 )
 animation = "run"
-frame = 1
+frame = 2
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
