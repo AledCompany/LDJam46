@@ -15,10 +15,10 @@ position = Vector2( -2.15091, -22.5846 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 3 )
 
-[node name="testInvoke" type="Node2D" parent="."]
+[node name="WoolInvoker" type="Node2D" parent="."]
+visible = false
 
-[node name="Sprite" type="Sprite" parent="testInvoke"]
-modulate = Color( 0.439216, 0.207843, 0.207843, 1 )
-position = Vector2( 1.71475, 2.57213 )
-scale = Vector2( 1.07946, 1.07946 )
+[node name="Sprite" type="Sprite" parent="WoolInvoker"]
+position = Vector2( 0.35849, -18.2828 )
+scale = Vector2( 0.543651, 0.543651 )
 texture = ExtResource( 2 )

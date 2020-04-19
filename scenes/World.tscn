@@ -1,10 +1,13 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://scenes/Trampoline.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/ItemInvoker.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://icon.png" type="Texture" id=4]
 [ext_resource path="res://asset/decors/sol.png" type="Texture" id=5]
+[ext_resource path="res://scenes/FlowerPot.tscn" type="PackedScene" id=6]
+[ext_resource path="res://asset/objet/platforme_ressort1.png" type="Texture" id=7]
+[ext_resource path="res://scenes/Wool.tscn" type="PackedScene" id=8]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 64, 64, 0, 64, 0, 0, 64, 0 )
@@ -187,39 +190,46 @@ __meta__ = {
 }
 
 [node name="ButtonTrampo" type="TextureButton" parent="CanvasLayer/Control/Container"]
-margin_left = 433.0
-margin_right = 497.0
+margin_left = 449.0
+margin_right = 481.0
 margin_bottom = 64.0
-texture_normal = ExtResource( 4 )
+texture_normal = ExtResource( 7 )
 
-[node name="TextureButton2" type="TextureButton" parent="CanvasLayer/Control/Container"]
-margin_left = 503.0
-margin_right = 567.0
+[node name="ButtonWool" type="TextureButton" parent="CanvasLayer/Control/Container"]
+margin_left = 487.0
+margin_right = 551.0
 margin_bottom = 64.0
 texture_normal = ExtResource( 4 )
 
 [node name="TextureButton3" type="TextureButton" parent="CanvasLayer/Control/Container"]
-margin_left = 573.0
-margin_right = 637.0
+margin_left = 557.0
+margin_right = 621.0
 margin_bottom = 64.0
 texture_normal = ExtResource( 4 )
 
 [node name="TextureButton4" type="TextureButton" parent="CanvasLayer/Control/Container"]
-margin_left = 643.0
-margin_right = 707.0
+margin_left = 627.0
+margin_right = 691.0
 margin_bottom = 64.0
 texture_normal = ExtResource( 4 )
 
 [node name="TextureButton5" type="TextureButton" parent="CanvasLayer/Control/Container"]
-margin_left = 713.0
-margin_right = 777.0
+margin_left = 697.0
+margin_right = 761.0
 margin_bottom = 64.0
 texture_normal = ExtResource( 4 )
 
 [node name="TextureButton6" type="TextureButton" parent="CanvasLayer/Control/Container"]
-margin_left = 783.0
-margin_right = 847.0
+margin_left = 767.0
+margin_right = 831.0
 margin_bottom = 64.0
 texture_normal = ExtResource( 4 )
+
+[node name="FlowerPot" parent="." instance=ExtResource( 6 )]
+position = Vector2( 553.007, 319.801 )
+
+[node name="Wool" parent="." instance=ExtResource( 8 )]
+position = Vector2( 668.73, 388.094 )
 [connection signal="body_entered" from="DeathZone" to="Player" method="_on_DeathZone_body_entered"]
 [connection signal="pressed" from="CanvasLayer/Control/Container/ButtonTrampo" to="ItemInvoker" method="_on_ButtonTrampo_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/Container/ButtonWool" to="ItemInvoker" method="_on_ButtonWool_pressed"]

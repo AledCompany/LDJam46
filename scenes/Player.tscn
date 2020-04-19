@@ -12,7 +12,6 @@
 [ext_resource path="res://asset/player/fall/fall2.png" type="Texture" id=10]
 [ext_resource path="res://asset/player/fall/fall1.png" type="Texture" id=11]
 
-
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
 "frames": [ ExtResource( 5 ) ],
@@ -25,14 +24,14 @@ animations = [ {
 "name": "run",
 "speed": 8.0
 }, {
-"frames": [ ExtResource( 9 ), ExtResource( 8 ), ExtResource( 7 ) ],
-"loop": false,
-"name": "jump",
-"speed": 8.0
-}, {
 "frames": [ ExtResource( 11 ), ExtResource( 10 ) ],
 "loop": false,
 "name": "fall",
+"speed": 8.0
+}, {
+"frames": [ ExtResource( 9 ), ExtResource( 8 ), ExtResource( 7 ) ],
+"loop": false,
+"name": "jump",
 "speed": 8.0
 } ]
 
@@ -51,3 +50,16 @@ playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 2 )
+
+[node name="Label" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -45.0
+margin_top = -48.0
+margin_right = 45.0
+margin_bottom = -34.0
+text = "Running"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}

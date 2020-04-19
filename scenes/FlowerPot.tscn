@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://icon.png" type="Texture" id=1]
+[ext_resource path="res://scripts/FlowerPot.gd" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 1 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 10.6605, 10.9494 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 26.1664, 86.1851 )
+
+[node name="FlowerPot" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="Pot" type="KinematicBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pot"]
+shape = SubResource( 1 )
+
+[node name="Sprite" type="AnimatedSprite" parent="Pot"]
+scale = Vector2( 0.300701, 0.300701 )
+frames = SubResource( 2 )
+
+[node name="Collision" type="Area2D" parent="Pot"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pot/Collision"]
+shape = SubResource( 4 )
+
+[node name="Detection" type="Area2D" parent="."]
+position = Vector2( -63.1209, 55.2078 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detection"]
+position = Vector2( 47.4153, -7.30113 )
+shape = SubResource( 3 )
+[connection signal="body_entered" from="Pot/Collision" to="." method="_on_Collision_body_entered"]
+[connection signal="body_entered" from="Detection" to="." method="_on_Detection_body_entered"]

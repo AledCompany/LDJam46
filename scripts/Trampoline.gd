@@ -3,10 +3,10 @@ extends KinematicBody2D
 class_name Trampoline
 
 var gravity = 9.81
-export var y_impulse = 2500
+var velocity = Vector2.ZERO
+export var y_impulse = 1000
 export var x_impulse = 200
 
-var velocity = Vector2.ZERO
 
 
 # Declare member variables here. Examples:
@@ -31,6 +31,5 @@ func _on_TrampolineArea_body_entered(body):
 		$Sprite.frame = 0
 		$Sprite.play("spring")
 		body.velocity += Vector2.UP * y_impulse + body.direction * x_impulse
-		print(body.velocity)
 		body.setAnimationJumping()
 	pass # Replace with function body.

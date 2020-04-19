@@ -6,6 +6,7 @@ var currentItem
 var currentScene
 
 var _sceneTrampoline = preload("res://scenes/Trampoline.tscn")
+var _sceneWool = preload("res://scenes/Wool.tscn")
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -47,3 +48,11 @@ func _invokeScene():
 		var instance = currentScene.instance()
 		instance.position = self.position
 		get_parent().add_child(instance)
+
+
+func _on_ButtonWool_pressed():
+	_clear()
+	currentItem = $WoolInvoker
+	currentScene = _sceneWool
+	currentItem.visible = true
+	pass # Replace with function body.
