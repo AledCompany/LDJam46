@@ -28,7 +28,8 @@ func _physics_process(delta):
 
 func _on_TrampolineArea_body_entered(body):
 	if body is Player:
-		print("le player veut sauter")
+		$Sprite.frame = 0
+		$Sprite.play("spring")
 		body.velocity += Vector2.UP * y_impulse + body.direction * x_impulse
 		print(body.velocity)
 		body.setAnimationJumping()
