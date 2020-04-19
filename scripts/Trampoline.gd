@@ -1,7 +1,12 @@
 extends KinematicBody2D
 
-export var y_impulse = 2000
-export var x_impulse = 500
+class_name Trampoline
+
+var gravity = 9.81
+export var y_impulse = 2500
+export var x_impulse = 200
+
+var velocity = Vector2.ZERO
 
 
 # Declare member variables here. Examples:
@@ -15,13 +20,17 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _physics_process(delta):
+	velocity.y += gravity * delta
+	move_and_collide(velocity)
+	pass
 
 
 func _on_TrampolineArea_body_entered(body):
 	if body is Player:
-		print("le player veut sauter")
+		$Sprite.frame = 0
+		$Sprite.play("spring")
 		body.velocity += Vector2.UP * y_impulse + body.direction * x_impulse
 		print(body.velocity)
+		body.setAnimationJumping()
 	pass # Replace with function body.
