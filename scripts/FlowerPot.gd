@@ -24,6 +24,6 @@ func _on_Detection_body_entered(body):
 
 
 func _on_Collision_body_entered(body):
-	if body is Player:
+	if body is Player and velocity.y>20:
 		body.kill()
 	pass # Replace with function body.
