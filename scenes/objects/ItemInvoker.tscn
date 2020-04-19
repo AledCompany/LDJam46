@@ -11,14 +11,11 @@ script = ExtResource( 1 )
 visible = false
 
 [node name="Sprite" type="Sprite" parent="TrampolineInvoker"]
-position = Vector2( -2.15091, -22.5846 )
-scale = Vector2( 2, 2 )
 texture = ExtResource( 3 )
 
 [node name="WoolInvoker" type="Node2D" parent="."]
 visible = false
 
 [node name="Sprite" type="Sprite" parent="WoolInvoker"]
-position = Vector2( 0.35849, -18.2828 )
 scale = Vector2( 0.543651, 0.543651 )
 texture = ExtResource( 2 )

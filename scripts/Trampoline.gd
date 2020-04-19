@@ -4,8 +4,8 @@ class_name Trampoline
 
 var gravity = 9.81
 var velocity = Vector2.ZERO
-export var y_impulse = 1000
-export var x_impulse = 200
+export var y_impulse = 400
+export var x_impulse = 400
 
 
 
@@ -30,6 +30,6 @@ func _on_TrampolineArea_body_entered(body):
 	if body is Player:
 		$Sprite.frame = 0
 		$Sprite.play("spring")
-		body.velocity += Vector2.UP * y_impulse + body.direction * x_impulse
-		body.setAnimationJumping()
+		body.set_impulse(Vector2.UP * y_impulse + body.direction * x_impulse)
+		print(body.impulse)
 	pass # Replace with function body.

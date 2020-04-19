@@ -13,11 +13,11 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=4]
+[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 10.6605, 10.9494 )
 
-[sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 26.1664, 86.1851 )
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 16, 40 )
 
 [node name="FlowerPot" type="Node2D"]
 script = ExtResource( 2 )
@@ -34,13 +34,13 @@ frames = SubResource( 2 )
 [node name="Collision" type="Area2D" parent="Pot"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pot/Collision"]
-shape = SubResource( 4 )
+shape = SubResource( 3 )
 
 [node name="Detection" type="Area2D" parent="."]
 position = Vector2( -63.1209, 55.2078 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detection"]
-position = Vector2( 47.4153, -7.30113 )
-shape = SubResource( 3 )
+position = Vector2( 58.1209, -26.2078 )
+shape = SubResource( 4 )
 [connection signal="body_entered" from="Pot/Collision" to="." method="_on_Collision_body_entered"]
 [connection signal="body_entered" from="Detection" to="." method="_on_Detection_body_entered"]

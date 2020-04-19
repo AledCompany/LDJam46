@@ -11,12 +11,14 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="CircleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=4]
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 89.5329, 10 )
+extents = Vector2( 32, 10 )
 
 [node name="Wool" type="KinematicBody2D"]
+collision_layer = 2
+collision_mask = 2
 script = ExtResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
@@ -25,11 +27,11 @@ frames = SubResource( 1 )
 animation = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 2 )
+shape = SubResource( 4 )
 
 [node name="DetectionArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
-position = Vector2( -89.2953, 0 )
+position = Vector2( -32, 0 )
 shape = SubResource( 3 )
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_DetectionArea_body_entered"]
