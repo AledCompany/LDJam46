@@ -32,7 +32,7 @@ var levels=[
 	"objects":[3,3]},
 	{"scene":preload("res://scenes/levels/level3.tscn"),
 	"desc":"Jumpy Mountains",
-	"objects":[3,3]},
+	"objects":[7,3]},
 	]
 var state=State.title
 

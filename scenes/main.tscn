@@ -21,12 +21,12 @@
 [ext_resource path="res://asset/buttons/enveloppe_missing.png" type="Texture" id=19]
 [ext_resource path="res://asset/buttons/enveloppe.png" type="Texture" id=20]
 
-[sub_resource type="DynamicFont" id=16]
+[sub_resource type="DynamicFont" id=1]
 size = 20
 outline_color = Color( 0.0470588, 0.0431373, 0.258824, 1 )
 font_data = ExtResource( 8 )
 
-[sub_resource type="StyleBoxTexture" id=15]
+[sub_resource type="StyleBoxTexture" id=2]
 texture = ExtResource( 10 )
 region_rect = Rect2( 0, 0, 40, 40 )
 margin_left = 12.0
@@ -36,7 +36,7 @@ margin_bottom = 12.0
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 
-[sub_resource type="StyleBoxTexture" id=13]
+[sub_resource type="StyleBoxTexture" id=3]
 texture = ExtResource( 10 )
 region_rect = Rect2( 0, 0, 40, 40 )
 margin_left = 12.0
@@ -46,7 +46,7 @@ margin_bottom = 12.0
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 
-[sub_resource type="StyleBoxTexture" id=14]
+[sub_resource type="StyleBoxTexture" id=4]
 texture = ExtResource( 11 )
 region_rect = Rect2( 0, 0, 40, 40 )
 margin_left = 12.0
@@ -54,55 +54,55 @@ margin_right = 12.0
 margin_top = 12.0
 margin_bottom = 12.0
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="DynamicFont" id=5]
 size = 20
 outline_color = Color( 0.0392157, 0.0431373, 0.254902, 1 )
 font_data = ExtResource( 8 )
 
-[sub_resource type="Theme" id=2]
-default_font = SubResource( 1 )
+[sub_resource type="Theme" id=6]
+default_font = SubResource( 5 )
 Button/colors/font_color = Color( 0.282353, 0.545098, 0.831373, 1 )
 Button/colors/font_color_disabled = Color( 0.9, 0.9, 0.9, 0.2 )
 Button/colors/font_color_hover = Color( 0.47451, 0.85098, 0.992157, 1 )
 Button/colors/font_color_pressed = Color( 0.47451, 0.85098, 0.992157, 1 )
 Button/constants/hseparation = 2
-Button/fonts/font = SubResource( 16 )
+Button/fonts/font = SubResource( 1 )
 Button/styles/disabled = null
 Button/styles/focus = null
-Button/styles/hover = SubResource( 15 )
-Button/styles/normal = SubResource( 13 )
-Button/styles/pressed = SubResource( 14 )
+Button/styles/hover = SubResource( 2 )
+Button/styles/normal = SubResource( 3 )
+Button/styles/pressed = SubResource( 4 )
 
-[sub_resource type="ShaderMaterial" id=17]
+[sub_resource type="ShaderMaterial" id=7]
 shader = ExtResource( 5 )
 shader_param/offsetx = 0.0
 shader_param/offsety = 0.0
 
-[sub_resource type="ShaderMaterial" id=18]
+[sub_resource type="ShaderMaterial" id=8]
 shader = ExtResource( 5 )
 shader_param/offsetx = 0.0
 shader_param/offsety = 0.0
 
-[sub_resource type="ShaderMaterial" id=19]
+[sub_resource type="ShaderMaterial" id=9]
 shader = ExtResource( 5 )
 shader_param/offsetx = 0.0
 shader_param/offsety = 0.0
 
-[sub_resource type="ShaderMaterial" id=20]
+[sub_resource type="ShaderMaterial" id=10]
 shader = ExtResource( 7 )
 shader_param/outline_width = 2.0
 shader_param/outline_color = null
 
-[sub_resource type="DynamicFont" id=21]
+[sub_resource type="DynamicFont" id=11]
 size = 80
 outline_color = Color( 0.0470588, 0.0431373, 0.258824, 1 )
 font_data = ExtResource( 8 )
 
-[sub_resource type="DynamicFont" id=22]
+[sub_resource type="DynamicFont" id=12]
 size = 40
 font_data = ExtResource( 8 )
 
-[sub_resource type="Shader" id=10]
+[sub_resource type="Shader" id=13]
 code = "shader_type canvas_item;
 render_mode unshaded;
 
@@ -120,13 +120,13 @@ void fragment()
 	}
 }"
 
-[sub_resource type="ShaderMaterial" id=23]
-shader = SubResource( 10 )
+[sub_resource type="ShaderMaterial" id=14]
+shader = SubResource( 13 )
 shader_param/cutoff = 0.0
 shader_param/color = Color( 0.286275, 0.560784, 0.827451, 1 )
 shader_param/filter = ExtResource( 1 )
 
-[sub_resource type="Animation" id=24]
+[sub_resource type="Animation" id=15]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("hud:rect_scale")
@@ -141,7 +141,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 1.1, 1.1 ), Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=25]
+[sub_resource type="Animation" id=16]
 resource_name = "hide"
 tracks/0/type = "value"
 tracks/0/path = NodePath("tuto_cont/Panel:rect_scale")
@@ -156,7 +156,7 @@ tracks/0/keys = {
 "values": [ Vector2( 1e-05, 1e-05 ) ]
 }
 
-[sub_resource type="Animation" id=26]
+[sub_resource type="Animation" id=17]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("tuto_cont/Panel:rect_scale")
@@ -183,7 +183,7 @@ tracks/1/keys = {
 "values": [ 2, 0 ]
 }
 
-[sub_resource type="Animation" id=27]
+[sub_resource type="Animation" id=18]
 resource_name = "transition"
 tracks/0/type = "value"
 tracks/0/path = NodePath("transition:material:shader_param/cutoff")
@@ -224,7 +224,7 @@ tracks/2/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=28]
+[sub_resource type="Animation" id=19]
 resource_name = "open"
 tracks/0/type = "value"
 tracks/0/path = NodePath("title/title:rect_position")
@@ -267,7 +267,7 @@ tracks/2/keys = {
 pause_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
-theme = SubResource( 2 )
+theme = SubResource( 6 )
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -283,7 +283,7 @@ __meta__ = {
 
 [node name="bg" type="TextureRect" parent="."]
 modulate = Color( 1, 1, 1, 0.392157 )
-material = SubResource( 17 )
+material = SubResource( 7 )
 margin_left = -48.0
 margin_top = 205.0
 margin_right = 1248.0
@@ -296,7 +296,7 @@ __meta__ = {
 }
 
 [node name="bg1" type="TextureRect" parent="."]
-material = SubResource( 18 )
+material = SubResource( 8 )
 margin_top = 170.0
 margin_right = 699.0
 margin_bottom = 300.0
@@ -308,7 +308,7 @@ __meta__ = {
 }
 
 [node name="bg2" type="TextureRect" parent="."]
-material = SubResource( 19 )
+material = SubResource( 9 )
 margin_left = -170.0
 margin_top = 137.0
 margin_right = 512.0
@@ -328,7 +328,7 @@ color = Color( 0.172549, 0.392157, 0.368627, 1 )
 
 [node name="ViewportContainer" type="ViewportContainer" parent="."]
 pause_mode = 1
-material = SubResource( 20 )
+material = SubResource( 10 )
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -476,7 +476,7 @@ __meta__ = {
 [node name="label" type="Label" parent="before_level"]
 anchor_right = 1.0
 margin_bottom = 159.0
-custom_fonts/font = SubResource( 21 )
+custom_fonts/font = SubResource( 11 )
 custom_colors/font_color_shadow = Color( 0.0470588, 0.0431373, 0.258824, 1 )
 custom_constants/shadow_offset_x = 0
 custom_constants/shadow_offset_y = 4
@@ -490,7 +490,7 @@ __meta__ = {
 [node name="label2" type="Label" parent="before_level"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_fonts/font = SubResource( 22 )
+custom_fonts/font = SubResource( 12 )
 custom_colors/font_color = Color( 0.0470588, 0.0431373, 0.258824, 1 )
 custom_constants/shadow_offset_x = 0
 custom_constants/shadow_offset_y = 2
@@ -546,7 +546,7 @@ __meta__ = {
 [node name="label" type="Label" parent="after_level"]
 anchor_right = 1.0
 margin_bottom = 159.0
-custom_fonts/font = SubResource( 21 )
+custom_fonts/font = SubResource( 11 )
 custom_colors/font_color_shadow = Color( 0.0470588, 0.0431373, 0.258824, 1 )
 custom_constants/shadow_offset_x = 0
 custom_constants/shadow_offset_y = 4
@@ -560,7 +560,7 @@ __meta__ = {
 [node name="label3" type="Label" parent="after_level"]
 anchor_right = 1.0
 margin_bottom = 40.0
-custom_fonts/font = SubResource( 22 )
+custom_fonts/font = SubResource( 12 )
 custom_colors/font_color = Color( 0.0470588, 0.0431373, 0.258824, 1 )
 custom_constants/shadow_offset_x = 0
 custom_constants/shadow_offset_y = 2
@@ -652,7 +652,7 @@ __meta__ = {
 [node name="Label" type="Label" parent="game_over"]
 anchor_right = 1.0
 margin_bottom = 159.0
-custom_fonts/font = SubResource( 21 )
+custom_fonts/font = SubResource( 11 )
 custom_colors/font_color_shadow = Color( 0.0470588, 0.0431373, 0.258824, 1 )
 custom_constants/shadow_offset_x = 0
 custom_constants/shadow_offset_y = 4
@@ -702,7 +702,7 @@ __meta__ = {
 [node name="Label" type="Label" parent="pause"]
 anchor_right = 1.0
 margin_bottom = 159.0
-custom_fonts/font = SubResource( 21 )
+custom_fonts/font = SubResource( 11 )
 custom_colors/font_color_shadow = Color( 0.0470588, 0.0431373, 0.258824, 1 )
 custom_constants/shadow_offset_x = 0
 custom_constants/shadow_offset_y = 4
@@ -751,26 +751,26 @@ texture_hover = ExtResource( 17 )
 
 [node name="transition" type="ColorRect" parent="."]
 visible = false
-material = SubResource( 23 )
+material = SubResource( 14 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="anim_hud" type="AnimationPlayer" parent="."]
 playback_speed = 2.0
-anims/open = SubResource( 24 )
+anims/open = SubResource( 15 )
 
 [node name="anim_indication" type="AnimationPlayer" parent="."]
 autoplay = "hide"
 playback_speed = 2.0
-anims/hide = SubResource( 25 )
-anims/open = SubResource( 26 )
+anims/hide = SubResource( 16 )
+anims/open = SubResource( 17 )
 
 [node name="anim_transition" type="AnimationPlayer" parent="."]
-anims/transition = SubResource( 27 )
+anims/transition = SubResource( 18 )
 
 [node name="anim_title" type="AnimationPlayer" parent="."]
 autoplay = "open"
-anims/open = SubResource( 28 )
+anims/open = SubResource( 19 )
 [connection signal="gui_input" from="tuto_cont" to="." method="_on_CenterContainer_gui_input"]
 [connection signal="pressed" from="title/HBoxContainer/button_title" to="." method="_on_button_title_pressed"]
 [connection signal="pressed" from="title/HBoxContainer/button_quit" to="." method="_on_button_quit_pressed"]
