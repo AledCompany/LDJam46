@@ -347,14 +347,8 @@ transparent_bg = true
 handle_input_locally = false
 render_target_update_mode = 3
 
-[node name="hud" type="Control" parent="." instance=ExtResource( 6 )]
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="hud" parent="." instance=ExtResource( 6 )]
 rect_scale = Vector2( 1e-05, 1e-05 )
-rect_pivot_offset = Vector2( 256, 144 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="tuto_cont" type="CenterContainer" parent="."]
 anchor_right = 1.0
