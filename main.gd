@@ -26,6 +26,9 @@ var current_level=0
 var levels=[{"scene":preload("res://scenes/levels/level1.tscn"),"desc":"First delivery"}]
 var state=State.title
 
+func _ready():
+	$CanvasLayer/Control/pause_button.connect("pressed",self,"_pause")
+
 func _process(delta):
 	move_item_invoker()
 	move_background()
@@ -70,14 +73,17 @@ func transition_change():
 	if state==State.title:
 		$title.visible=false
 		$game_over.visible=false
+		$after_level.visible=false
 		$before_level.visible=true
 		$before_level/label.text="Level "+str(current_level)
 		$before_level/label2.text=levels[current_level]["desc"]
 		state=State.before_level
 	elif state==State.before_level:
 		$before_level.visible=false
-		
 		call_deferred("set_level",current_level)
+	elif state==State.after_level:
+		$after_level.visible=true
+		$ViewportContainer/Viewport.get_child(0).queue_free()
 	elif state==State.game_over:
 		$ViewportContainer/Viewport.get_child(0).queue_free()
 		$game_over.visible=true
@@ -85,6 +91,8 @@ func transition_change():
 		get_tree().reload_current_scene()
 
 func set_level(id):
+	if $ViewportContainer/Viewport.get_child_count()>0:
+		$ViewportContainer/Viewport.get_child(0).queue_free()
 	var tmp=levels[id]["scene"].instance()
 	$ViewportContainer/Viewport.add_child(tmp)
 	world=$ViewportContainer/Viewport.get_child(0)
@@ -93,6 +101,7 @@ func set_level(id):
 	button_trampo.connect("pressed",item_invoker,"_on_ButtonTrampo_pressed")
 	button_wool.connect("pressed",item_invoker,"_on_ButtonWool_pressed")
 	item_invoker.connect("reset_buttons",self,"_reset_buttons")
+	$ViewportContainer/Viewport.get_child(0).get_node("objects/maison").connect("level_finished",self,"level_finished")
 	connect_panels()
 	$ViewportContainer/Viewport.get_child(0).get_node("Player").connect("dead",self,"_player_dead")
 
@@ -101,7 +110,13 @@ func _player_dead():
 	$anim_transition.play("transition")
 	$anim_hud.play_backwards("open")
 	
-	
+func level_finished(envelope,timer):
+	state=State.after_level
+	$after_level/enveloppe.visible=envelope
+	$anim_hud.play_backwards("open")
+	var timer_string="Time "+str("%02d:" % int(timer/60))+str(fmod(timer,60)).pad_zeros(2).pad_decimals(2)
+	$after_level/label3.text=timer_string
+	$anim_transition.play("transition")
 
 func _on_Button_pressed():
 	if state==State.before_level:
@@ -116,9 +131,8 @@ func _on_button_title_pressed():
 
 
 func _on_restart_pressed():
-	if state==State.game_over:
-		state=State.title
-		$anim_transition.play("transition")
+	state=State.title
+	$anim_transition.play("transition")
 
 
 func _on_home_pressed():
@@ -128,3 +142,20 @@ func _on_home_pressed():
 
 func _on_button_quit_pressed():
 	get_tree().quit()
+
+
+func _on_button_next_pressed():
+	if levels.size()>current_level+1:
+		current_level+=1
+		state=State.title
+		$anim_transition.play("transition")
+
+func _pause():
+	get_tree().paused=true
+	$pause.visible=true
+	$anim_hud.play_backwards("open")
+
+func _on_button_continue_pressed():
+	get_tree().paused=false
+	$pause.visible=false
+	$anim_hud.play("open")

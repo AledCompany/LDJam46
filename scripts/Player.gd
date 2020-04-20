@@ -15,12 +15,15 @@ var impulse = Vector2.ZERO
 var dead=false
 var isJumping = false
 var enveloppe = false
+var timer =0.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	Engine.time_scale = 1
 	pass # Replace with function body.
 
+func _process(delta):
+	timer+=delta
 
 func _physics_process(delta):	
 	velocity.y += gravity * delta
