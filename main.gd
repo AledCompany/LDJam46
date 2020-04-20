@@ -11,6 +11,7 @@ var world=null
 onready var bg_initpos=$bg.rect_position+$bg.rect_size
 onready var bg1_initpos=$bg1.rect_position+$bg1.rect_size
 onready var bg2_initpos=$bg2.rect_position+$bg2.rect_size
+onready var bg3_initpos=$bg3.rect_position+$bg3.rect_size
 
 enum State{
 	title,
@@ -22,7 +23,7 @@ enum State{
 	end
 }
 
-var current_level=0
+var current_level=1
 
 var levels=[
 	{"scene":preload("res://scenes/levels/level1.tscn"),
@@ -56,6 +57,8 @@ func move_background():
 		$bg1.rect_position.y=bg1_initpos.y-$bg1.rect_size.y*(player_displacement().y)
 		$bg2.material.set_shader_param("offsetx",-player_displacement(1).x)
 		$bg2.rect_position.y=bg2_initpos.y-$bg1.rect_size.y*(player_displacement().y)
+		$bg3.material.set_shader_param("offsetx",-player_displacement(100).x)
+		$bg3.rect_position.y=bg3_initpos.y-$bg3.rect_size.y*(player_displacement().y)
 
 func player_displacement(value:float=1.0)->Vector2:
 	var sizex=1280/4
@@ -108,11 +111,12 @@ func transition_change():
 func set_level(id):
 	if $ViewportContainer/Viewport.get_child_count()>0:
 		$ViewportContainer/Viewport.get_child(0).queue_free()
+		
 	var tmp=levels[id]["scene"].instance()
 	$ViewportContainer/Viewport.add_child(tmp)
 	world=$ViewportContainer/Viewport.get_child(0)
 	item_invoker=$ViewportContainer/Viewport.get_child(0).get_node("Player/Camera2D/ItemInvoker")
-	state=State.level
+	
 	button_trampo.connect("pressed",item_invoker,"_on_ButtonTrampo_pressed")
 	button_wool.connect("pressed",item_invoker,"_on_ButtonWool_pressed")
 	item_invoker.connect("reset_buttons",self,"_reset_buttons")
@@ -123,11 +127,13 @@ func set_level(id):
 	set_objects()
 	if id>0:
 		$anim_hud.play("open")
+	state=State.level
 
 func set_objects():
 	var objects=item_invoker.obj_left
 	for i in $hud/Control/Container.get_child_count():
 		if objects.size()>i:
+			$hud/Control/Container.get_child(i).disabled=false
 			$hud/Control/Container.get_child(i).visible=true
 			$hud/Control/Container.get_child(i).get_node("left").text=str(objects[i])
 			if objects[i]==0:
@@ -163,7 +169,11 @@ func _on_button_title_pressed():
 
 
 func _on_restart_pressed():
+	if $ViewportContainer/Viewport.get_child_count()>0:
+		$ViewportContainer/Viewport.get_child(0).queue_free()
 	state=State.title
+	get_tree().paused=false
+	$pause.visible=false
 	$anim_transition.play("transition")
 
 

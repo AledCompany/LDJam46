@@ -57,10 +57,10 @@ func set_impulse(new_impulse):
 
 
 func kill(immediately=false):
-	print("Player is dead...")
-	dead=true
-	if immediately:
-		emit_signal("dead")
+	if !dead:
+		dead=true
+		if immediately:
+			emit_signal("dead")
 
 
 func _on_AnimatedSprite_animation_finished():
