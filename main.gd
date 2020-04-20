@@ -1,28 +1,46 @@
 extends Control
 
 
-onready var player=$ViewportContainer/Viewport.get_child(0).get_node("Player")
+#onready var player=$ViewportContainer/Viewport.get_child(0).get_node("Player")
 onready var button_trampo=$CanvasLayer/Control/Container/ButtonTrampo
 onready var button_wool=$CanvasLayer/Control/Container/ButtonWool
-onready var item_invoker=$ViewportContainer/Viewport.get_child(0).get_node("Player/Camera2D/ItemInvoker")
-onready var world=$ViewportContainer/Viewport.get_child(0)
+var item_invoker=null
+var world=null
 
 
 onready var bg_initpos=$bg.rect_position+$bg.rect_size
 onready var bg1_initpos=$bg1.rect_position+$bg1.rect_size
 onready var bg2_initpos=$bg2.rect_position+$bg2.rect_size
-func _ready():
-	button_trampo.connect("pressed",item_invoker,"_on_ButtonTrampo_pressed")
-	button_wool.connect("pressed",item_invoker,"_on_ButtonWool_pressed")
-	connect_panels()
+
+enum State{
+	title,
+	before_level,
+	level,
+	after_level,
+	game_over,
+	restart
+}
+
+var current_level=0
+
+var levels=[{"scene":preload("res://scenes/levels/level1.tscn"),"desc":"First delivery"}]
+var state=State.title
+
 func _process(delta):
-	item_invoker.set_position(get_global_mouse_position())
-	$bg.material.set_shader_param("offsetx",-player_displacement(10).x)
-	$bg.rect_position.y=bg_initpos.y-$bg.rect_size.y*(player_displacement().y)
-	$bg1.material.set_shader_param("offsetx",-player_displacement(5).x)
-	$bg1.rect_position.y=bg1_initpos.y-$bg1.rect_size.y*(player_displacement().y)
-	$bg2.material.set_shader_param("offsetx",-player_displacement(1).x)
-	$bg2.rect_position.y=bg2_initpos.y-$bg1.rect_size.y*(player_displacement().y)
+	move_item_invoker()
+	move_background()
+func move_item_invoker():
+	if state==State.level:
+		item_invoker.set_position(get_global_mouse_position())
+
+func move_background():
+	if state==State.level:
+		$bg.material.set_shader_param("offsetx",-player_displacement(10).x)
+		$bg.rect_position.y=bg_initpos.y-$bg.rect_size.y*(player_displacement().y)
+		$bg1.material.set_shader_param("offsetx",-player_displacement(5).x)
+		$bg1.rect_position.y=bg1_initpos.y-$bg1.rect_size.y*(player_displacement().y)
+		$bg2.material.set_shader_param("offsetx",-player_displacement(1).x)
+		$bg2.rect_position.y=bg2_initpos.y-$bg1.rect_size.y*(player_displacement().y)
 
 func player_displacement(value:float=1.0)->Vector2:
 	var sizex=1280/4
@@ -43,7 +61,70 @@ func display_panel(text:String,param:Dictionary):
 		$anim_hud.play("open")
 
 func _on_CenterContainer_gui_input(event):
-	print("ok")
 	if event is InputEventMouseButton and !$anim_indication.is_playing():
 		$anim_indication.play_backwards("open")
 		get_tree().paused=false
+
+
+func transition_change():
+	if state==State.title:
+		$title.visible=false
+		$game_over.visible=false
+		$before_level.visible=true
+		$before_level/label.text="Level "+str(current_level)
+		$before_level/label2.text=levels[current_level]["desc"]
+		state=State.before_level
+	elif state==State.before_level:
+		$before_level.visible=false
+		
+		call_deferred("set_level",current_level)
+	elif state==State.game_over:
+		$ViewportContainer/Viewport.get_child(0).queue_free()
+		$game_over.visible=true
+	elif state==State.restart:
+		get_tree().reload_current_scene()
+
+func set_level(id):
+	var tmp=levels[id]["scene"].instance()
+	$ViewportContainer/Viewport.add_child(tmp)
+	world=$ViewportContainer/Viewport.get_child(0)
+	item_invoker=$ViewportContainer/Viewport.get_child(0).get_node("Player/Camera2D/ItemInvoker")
+	state=State.level
+	button_trampo.connect("pressed",item_invoker,"_on_ButtonTrampo_pressed")
+	button_wool.connect("pressed",item_invoker,"_on_ButtonWool_pressed")
+	item_invoker.connect("reset_buttons",self,"_reset_buttons")
+	connect_panels()
+	$ViewportContainer/Viewport.get_child(0).get_node("Player").connect("dead",self,"_player_dead")
+
+func _player_dead():
+	state=State.game_over
+	$anim_transition.play("transition")
+	$anim_hud.play_backwards("open")
+	
+	
+
+func _on_Button_pressed():
+	if state==State.before_level:
+		$anim_transition.play("transition")
+
+func _reset_buttons():
+	button_trampo.pressed=false
+	button_wool.pressed=false
+func _on_button_title_pressed():
+	if state==State.title:
+		$anim_transition.play("transition")
+
+
+func _on_restart_pressed():
+	if state==State.game_over:
+		state=State.title
+		$anim_transition.play("transition")
+
+
+func _on_home_pressed():
+	state=State.restart
+	$anim_transition.play("transition")
+
+
+func _on_button_quit_pressed():
+	get_tree().quit()

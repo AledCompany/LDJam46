@@ -2,6 +2,7 @@ extends KinematicBody2D
 
 class_name Player
 
+signal dead
 
 const gravity = 1000
 
@@ -55,9 +56,9 @@ func kill(immediately=false):
 	print("Player is dead...")
 	dead=true
 	if immediately:
-		get_tree().reload_current_scene()
+		emit_signal("dead")
 
 
 func _on_AnimatedSprite_animation_finished():
 	if $AnimatedSprite.animation=="die":
-		get_tree().reload_current_scene()
+		emit_signal("dead")
