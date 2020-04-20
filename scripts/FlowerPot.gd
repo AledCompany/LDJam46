@@ -14,6 +14,7 @@ func _physics_process(delta):
 		velocity.y += gravity * delta
 		$Pot.move_and_collide(velocity)
 		if $Pot.is_on_floor():
+			$Pot/Sprite.play("destroy")
 			broken = true
 	pass
 
