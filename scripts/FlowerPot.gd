@@ -25,6 +25,7 @@ func _on_Collision_body_entered(body):
 	if !fixed and !broken and (body is KinematicBody2D or body is TileMap or body is StaticBody2D):
 		$Pot/Sprite.play("destroy")
 		broken = true
+		$Pot/audio_hit.play()
 		if body is Player:
 			body.kill()
 		

@@ -11,5 +11,5 @@ dest_files=[ "res://.import/dash.ogg-7d8ac8eb1b25806be4f677e23d38b94e.oggstr" ]
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0

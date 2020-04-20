@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://asset/objet/flower/flower.png" type="Texture" id=1]
 [ext_resource path="res://scripts/FlowerPot.gd" type="Script" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://asset/objet/flower/flower2.png" type="Texture" id=5]
 [ext_resource path="res://asset/objet/flower/flower4.png" type="Texture" id=6]
 [ext_resource path="res://asset/objet/flower/flower1.png" type="Texture" id=7]
+[ext_resource path="res://asset/sound/hit_flower.ogg" type="AudioStream" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 4, 4 )
@@ -46,6 +47,10 @@ playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pot/Collision"]
 shape = SubResource( 3 )
+
+[node name="audio_hit" type="AudioStreamPlayer2D" parent="Pot"]
+stream = ExtResource( 8 )
+volume_db = -10.0
 
 [node name="Detection" type="Area2D" parent="."]
 position = Vector2( -63.1209, 55.2078 )

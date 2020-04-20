@@ -59,6 +59,7 @@ func set_impulse(new_impulse):
 func kill(immediately=false):
 	if !dead:
 		dead=true
+		$audio_die.play()
 		if immediately:
 			emit_signal("dead")
 
