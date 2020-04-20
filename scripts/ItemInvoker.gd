@@ -6,10 +6,13 @@ signal reset_buttons
 
 var currentItem
 var currentScene
+var idselected=-1
 
 var _sceneTrampoline = preload("res://scenes/objects/Trampoline.tscn")
 var _sceneWool = preload("res://scenes/objects/Wool.tscn")
 onready var objects=get_node("../../../objects")
+
+var  obj_left=[]
 
 
 func set_position(newpos):
@@ -29,6 +32,7 @@ func _clear():
 		child.visible = false
 	currentScene = null
 	currentItem = null
+	idselected=-1
 	emit_signal("reset_buttons")
 
 
@@ -39,13 +43,19 @@ func _invokeScene():
 		instance.global_position = self.global_position
 		print(objects)
 		objects.add_child(instance)
+		if obj_left.size()>idselected and obj_left[idselected]>0:
+			obj_left[idselected]-=1
 		
 func _on_ButtonTrampo_pressed():
-	currentItem = $TrampolineInvoker
-	currentScene = _sceneTrampoline
-	currentItem.visible = true
+	if obj_left.size()>0 and obj_left[0]>0:
+		currentItem = $TrampolineInvoker
+		currentScene = _sceneTrampoline
+		currentItem.visible = true
+		idselected=0
 
 func _on_ButtonWool_pressed():
-	currentItem = $WoolInvoker
-	currentScene = _sceneWool
-	currentItem.visible = true
+	if obj_left.size()>1 and obj_left[1]>0:
+		currentItem = $WoolInvoker
+		currentScene = _sceneWool
+		currentItem.visible = true
+		idselected=1

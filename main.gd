@@ -23,7 +23,14 @@ enum State{
 
 var current_level=0
 
-var levels=[{"scene":preload("res://scenes/levels/level1.tscn"),"desc":"First delivery"}]
+var levels=[
+	{"scene":preload("res://scenes/levels/level1.tscn"),
+	"desc":"First delivery",
+	"objects":[3]},
+	{"scene":preload("res://scenes/levels/level2.tscn"),
+	"desc":"Oho",
+	"objects":[3,3]}
+	]
 var state=State.title
 
 func _ready():
@@ -101,9 +108,25 @@ func set_level(id):
 	button_trampo.connect("pressed",item_invoker,"_on_ButtonTrampo_pressed")
 	button_wool.connect("pressed",item_invoker,"_on_ButtonWool_pressed")
 	item_invoker.connect("reset_buttons",self,"_reset_buttons")
+	item_invoker.obj_left=levels[id]["objects"]
 	$ViewportContainer/Viewport.get_child(0).get_node("objects/maison").connect("level_finished",self,"level_finished")
 	connect_panels()
 	$ViewportContainer/Viewport.get_child(0).get_node("Player").connect("dead",self,"_player_dead")
+	set_objects()
+	if id>0:
+		$anim_hud.play("open")
+
+func set_objects():
+	var objects=item_invoker.obj_left
+	for i in $hud/Control/Container.get_child_count():
+		if objects.size()>i:
+			$hud/Control/Container.get_child(i).visible=true
+			$hud/Control/Container.get_child(i).get_node("left").text=str(objects[i])
+			if objects[i]==0:
+				$hud/Control/Container.get_child(i).disabled=true
+		else:
+			$hud/Control/Container.get_child(i).visible=false
+
 
 func _player_dead():
 	state=State.game_over
@@ -123,6 +146,7 @@ func _on_Button_pressed():
 		$anim_transition.play("transition")
 
 func _reset_buttons():
+	set_objects()
 	button_trampo.pressed=false
 	button_wool.pressed=false
 func _on_button_title_pressed():
