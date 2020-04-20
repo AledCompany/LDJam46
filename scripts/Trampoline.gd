@@ -31,5 +31,6 @@ func _on_TrampolineArea_body_entered(body):
 		$Sprite.frame = 0
 		$Sprite.play("spring")
 		body.set_impulse(Vector2.UP * y_impulse + body.direction * x_impulse)
+		body.get_node("audio_jump").play()
 		print(body.impulse)
 	pass # Replace with function body.

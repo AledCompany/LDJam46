@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://asset/objet/envelope/envelope3.png" type="Texture" id=1]
 [ext_resource path="res://asset/objet/envelope/envelope5.png" type="Texture" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://asset/objet/envelope/envelope4.png" type="Texture" id=7]
 [ext_resource path="res://asset/objet/envelope/envelope8.png" type="Texture" id=8]
 [ext_resource path="res://scenes/objects/Envelope.gd" type="Script" id=9]
+[ext_resource path="res://asset/sound/pick_envelope.ogg" type="AudioStream" id=10]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -55,7 +56,6 @@ script = ExtResource( 9 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
 animation = "idle"
-frame = 2
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -64,4 +64,8 @@ shape = SubResource( 2 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 playback_speed = 2.0
 anims/destroy = SubResource( 3 )
+
+[node name="audio_pick" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 10 )
+volume_db = -20.0
 [connection signal="body_entered" from="." to="." method="_on_Envelope_body_entered"]

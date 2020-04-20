@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scripts/ItemInvoker.gd" type="Script" id=1]
 [ext_resource path="res://asset/objet/wool/wool.png" type="Texture" id=2]
 [ext_resource path="res://asset/objet/platforme_ressort1.png" type="Texture" id=3]
+[ext_resource path="res://asset/sound/button_player.ogg" type="AudioStream" id=4]
+[ext_resource path="res://asset/sound/spawn.ogg" type="AudioStream" id=5]
 
 [node name="ItemInvoker" type="Node2D"]
 modulate = Color( 0, 1, 1, 0.501961 )
@@ -20,3 +22,11 @@ visible = false
 
 [node name="Sprite" type="Sprite" parent="WoolInvoker"]
 texture = ExtResource( 2 )
+
+[node name="audio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 4 )
+volume_db = -10.0
+
+[node name="audio_spawn" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 5 )
+volume_db = -10.0

@@ -43,11 +43,13 @@ func _invokeScene():
 		instance.global_position = self.global_position
 		print(objects)
 		objects.add_child(instance)
+		$audio_spawn.play()
 		if obj_left.size()>idselected and obj_left[idselected]>0:
 			obj_left[idselected]-=1
 		
 func _on_ButtonTrampo_pressed():
 	if obj_left.size()>0 and obj_left[0]>0:
+		$audio.play()
 		currentItem = $TrampolineInvoker
 		currentScene = _sceneTrampoline
 		currentItem.visible = true
@@ -55,6 +57,7 @@ func _on_ButtonTrampo_pressed():
 
 func _on_ButtonWool_pressed():
 	if obj_left.size()>1 and obj_left[1]>0:
+		$audio.play()
 		currentItem = $WoolInvoker
 		currentScene = _sceneWool
 		currentItem.visible = true

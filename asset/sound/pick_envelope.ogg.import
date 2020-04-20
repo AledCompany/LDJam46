@@ -11,5 +11,5 @@ dest_files=[ "res://.import/pick_envelope.ogg-a0f65b2c73b8c9dda80276be56eb55a6.o
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0

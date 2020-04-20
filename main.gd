@@ -23,14 +23,14 @@ enum State{
 	end
 }
 
-var current_level=1
+var current_level=0
 
 var levels=[
 	{"scene":preload("res://scenes/levels/level1.tscn"),
 	"desc":"First delivery",
-	"objects":[3]},
+	"objects":[5]},
 	{"scene":preload("res://scenes/levels/level2.tscn"),
-	"desc":"Oho",
+	"desc":"holed path",
 	"objects":[8,4]},
 	{"scene":preload("res://scenes/levels/level3.tscn"),
 	"desc":"Jumpy Mountains",
@@ -41,6 +41,7 @@ var state=State.title
 
 func _ready():
 	$hud/Control/pause_button.connect("pressed",self,"_pause")
+	MusicManager.fade(load("res://asset/music/menu.ogg"),1,1)
 
 func _process(delta):
 	move_item_invoker()
@@ -99,8 +100,10 @@ func transition_change():
 	elif state==State.after_level:
 		$after_level.visible=true
 		$ViewportContainer/Viewport.get_child(0).queue_free()
+		MusicManager.fade(load("res://asset/music/menu.ogg"),1,1)
 	elif state==State.game_over:
 		$ViewportContainer/Viewport.get_child(0).queue_free()
+		MusicManager.fade(load("res://asset/music/menu.ogg"),1,1)
 		$game_over.visible=true
 	elif state==State.restart:
 		get_tree().reload_current_scene()
@@ -120,7 +123,7 @@ func set_level(id):
 	button_trampo.connect("pressed",item_invoker,"_on_ButtonTrampo_pressed")
 	button_wool.connect("pressed",item_invoker,"_on_ButtonWool_pressed")
 	item_invoker.connect("reset_buttons",self,"_reset_buttons")
-	item_invoker.obj_left=levels[id]["objects"]
+	item_invoker.obj_left=[]+levels[id]["objects"]
 	$ViewportContainer/Viewport.get_child(0).get_node("objects/maison").connect("level_finished",self,"level_finished")
 	connect_panels()
 	$ViewportContainer/Viewport.get_child(0).get_node("Player").connect("dead",self,"_player_dead")
@@ -128,6 +131,7 @@ func set_level(id):
 	if id>0:
 		$anim_hud.play("open")
 	state=State.level
+	MusicManager.fade(load("res://asset/music/level.ogg"),1,1)
 
 func set_objects():
 	var objects=item_invoker.obj_left
@@ -156,6 +160,7 @@ func level_finished(envelope,timer):
 	$anim_transition.play("transition")
 
 func _on_Button_pressed():
+	$audio_button.play()
 	if state==State.before_level:
 		$anim_transition.play("transition")
 
@@ -164,13 +169,16 @@ func _reset_buttons():
 	button_trampo.pressed=false
 	button_wool.pressed=false
 func _on_button_title_pressed():
+	$audio_button.play()
 	if state==State.title:
 		$anim_transition.play("transition")
 
 
 func _on_restart_pressed():
+	$audio_button.play()
 	if $ViewportContainer/Viewport.get_child_count()>0:
 		$ViewportContainer/Viewport.get_child(0).queue_free()
+	MusicManager.fade(load("res://asset/music/menu.ogg"),1,1)
 	state=State.title
 	get_tree().paused=false
 	$pause.visible=false
@@ -178,15 +186,18 @@ func _on_restart_pressed():
 
 
 func _on_home_pressed():
+	$audio_button.play()
 	state=State.restart
 	$anim_transition.play("transition")
 
 
 func _on_button_quit_pressed():
+	$audio_button.play()
 	get_tree().quit()
 
 
 func _on_button_next_pressed():
+	$audio_button.play()
 	if levels.size()>current_level+1:
 		current_level+=1
 		state=State.title
@@ -196,11 +207,13 @@ func _on_button_next_pressed():
 		$anim_transition.play("transition")
 
 func _pause():
+	$audio_button.play()
 	get_tree().paused=true
 	$pause.visible=true
 	$anim_hud.play_backwards("open")
 
 func _on_button_continue_pressed():
+	$audio_button.play()
 	get_tree().paused=false
 	$pause.visible=false
 	$anim_hud.play("open")

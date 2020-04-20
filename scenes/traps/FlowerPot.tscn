@@ -48,14 +48,15 @@ playing = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pot/Collision"]
 shape = SubResource( 3 )
 
+[node name="audio_hit" type="AudioStreamPlayer2D" parent="Pot"]
+stream = ExtResource( 8 )
+volume_db = -10.0
+
 [node name="Detection" type="Area2D" parent="."]
 position = Vector2( -63.1209, 55.2078 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detection"]
 position = Vector2( 58.1209, -2.2078 )
 shape = SubResource( 4 )
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 8 )
 [connection signal="body_entered" from="Pot/Collision" to="." method="_on_Collision_body_entered"]
 [connection signal="body_entered" from="Detection" to="." method="_on_Detection_body_entered"]
