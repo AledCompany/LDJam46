@@ -53,7 +53,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0, 64 ), Vector2( 0, -16 ), Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=8]
 resource_name = "hide"
 tracks/0/type = "value"
 tracks/0/path = NodePath("tuto_cont/Panel:rect_scale")
@@ -68,8 +68,7 @@ tracks/0/keys = {
 "values": [ Vector2( 1e-05, 1e-05 ) ]
 }
 
-[sub_resource type="Animation" id=8]
-resource_name = "open"
+[sub_resource type="Animation" id=9]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("tuto_cont/Panel:rect_scale")
@@ -204,7 +203,6 @@ margin_top = 72.0
 margin_right = 384.0
 margin_bottom = 216.0
 rect_min_size = Vector2( 256, 144 )
-rect_scale = Vector2( 1e-05, 1e-05 )
 rect_pivot_offset = Vector2( 128, 72 )
 texture = ExtResource( 9 )
 patch_margin_left = 12
@@ -232,6 +230,6 @@ __meta__ = {
 [node name="anim_indication" type="AnimationPlayer" parent="."]
 autoplay = "hide"
 playback_speed = 2.0
-anims/hide = SubResource( 9 )
-anims/open = SubResource( 8 )
+anims/hide = SubResource( 8 )
+anims/open = SubResource( 9 )
 [connection signal="gui_input" from="tuto_cont" to="." method="_on_CenterContainer_gui_input"]

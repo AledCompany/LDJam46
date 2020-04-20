@@ -40,7 +40,7 @@ shape = SubResource( 3 )
 position = Vector2( -63.1209, 55.2078 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detection"]
-position = Vector2( 58.1209, -2.2078 )
+position = Vector2( 58.5842, -2.2078 )
 shape = SubResource( 4 )
 [connection signal="body_entered" from="Pot/Collision" to="." method="_on_Collision_body_entered"]
 [connection signal="body_entered" from="Detection" to="." method="_on_Detection_body_entered"]
