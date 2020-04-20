@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/dash.ogg-7d8ac8eb1b25806be4f677e23d38b94e.oggstr"
+
+[deps]
+
+source_file="res://asset/sound/dash.ogg"
+dest_files=[ "res://.import/dash.ogg-7d8ac8eb1b25806be4f677e23d38b94e.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
