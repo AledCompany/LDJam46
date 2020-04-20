@@ -10,12 +10,9 @@ func _ready():
 	pass # Replace with function body.
 	
 func _physics_process(delta):
-	if !fixed && !broken:
+	if !fixed:
 		velocity.y += gravity * delta
 		$Pot.move_and_collide(velocity)
-		if $Pot.is_on_floor():
-			$Pot/Sprite.play("destroy")
-			broken = true
 	pass
 
 func _on_Detection_body_entered(body):
@@ -25,6 +22,10 @@ func _on_Detection_body_entered(body):
 
 
 func _on_Collision_body_entered(body):
-	if body is Player:
-		body.kill()
+	if !fixed and !broken and (body is KinematicBody2D or body is TileMap or body is StaticBody2D):
+		$Pot/Sprite.play("destroy")
+		broken = true
+		if body is Player:
+			body.kill()
+		
 	pass # Replace with function body.

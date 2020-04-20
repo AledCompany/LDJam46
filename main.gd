@@ -2,8 +2,8 @@ extends Control
 
 
 #onready var player=$ViewportContainer/Viewport.get_child(0).get_node("Player")
-onready var button_trampo=$CanvasLayer/Control/Container/ButtonTrampo
-onready var button_wool=$CanvasLayer/Control/Container/ButtonWool
+onready var button_trampo=$hud/Control/Container/ButtonTrampo
+onready var button_wool=$hud/Control/Container/ButtonWool
 var item_invoker=null
 var world=null
 
@@ -27,7 +27,7 @@ var levels=[{"scene":preload("res://scenes/levels/level1.tscn"),"desc":"First de
 var state=State.title
 
 func _ready():
-	$CanvasLayer/Control/pause_button.connect("pressed",self,"_pause")
+	$hud/Control/pause_button.connect("pressed",self,"_pause")
 
 func _process(delta):
 	move_item_invoker()

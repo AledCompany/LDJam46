@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://asset/objet/flower/flower.png" type="Texture" id=1]
 [ext_resource path="res://scripts/FlowerPot.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://asset/objet/flower/flower5.png" type="Texture" id=4]
 [ext_resource path="res://asset/objet/flower/flower2.png" type="Texture" id=5]
 [ext_resource path="res://asset/objet/flower/flower4.png" type="Texture" id=6]
+[ext_resource path="res://asset/objet/flower/flower1.png" type="Texture" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 4, 4 )
@@ -14,11 +15,11 @@ extents = Vector2( 4, 4 )
 animations = [ {
 "frames": [ ExtResource( 1 ) ],
 "loop": true,
-"name": "idle",
+"name": "default",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 5 ), ExtResource( 3 ), ExtResource( 6 ), ExtResource( 4 ) ],
-"loop": true,
+"frames": [ ExtResource( 7 ), ExtResource( 5 ), ExtResource( 3 ), ExtResource( 6 ), ExtResource( 4 ) ],
+"loop": false,
 "name": "destroy",
 "speed": 8.0
 } ]
@@ -39,7 +40,6 @@ shape = SubResource( 1 )
 
 [node name="Sprite" type="AnimatedSprite" parent="Pot"]
 frames = SubResource( 2 )
-animation = "idle"
 playing = true
 
 [node name="Collision" type="Area2D" parent="Pot"]
