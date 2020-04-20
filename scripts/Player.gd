@@ -14,6 +14,7 @@ var velocity = Vector2.ZERO
 var impulse = Vector2.ZERO
 var dead=false
 var isJumping = false
+var enveloppe = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
