@@ -17,11 +17,11 @@ func _ready():
 	connect_panels()
 func _process(delta):
 	item_invoker.set_position(get_global_mouse_position())
-	$bg.material.set_shader_param("offsetx",player_displacement(10).x)
+	$bg.material.set_shader_param("offsetx",-player_displacement(10).x)
 	$bg.rect_position.y=bg_initpos.y-$bg.rect_size.y*(player_displacement().y)
-	$bg1.material.set_shader_param("offsetx",player_displacement(5).x)
+	$bg1.material.set_shader_param("offsetx",-player_displacement(5).x)
 	$bg1.rect_position.y=bg1_initpos.y-$bg1.rect_size.y*(player_displacement().y)
-	$bg2.material.set_shader_param("offsetx",player_displacement(1).x)
+	$bg2.material.set_shader_param("offsetx",-player_displacement(1).x)
 	$bg2.rect_position.y=bg2_initpos.y-$bg1.rect_size.y*(player_displacement().y)
 
 func player_displacement(value:float=1.0)->Vector2:
@@ -35,10 +35,12 @@ func connect_panels():
 	for panel in get_tree().get_nodes_in_group("panel"):
 		panel.connect("tuto",self,"display_panel")
 
-func display_panel(text:String):
+func display_panel(text:String,param:Dictionary):
 	$tuto_cont/Panel/Label.text=text
 	$anim_indication.play("open")
 	get_tree().paused=true
+	if param.has("activate_hud"):
+		$anim_hud.play("open")
 
 func _on_CenterContainer_gui_input(event):
 	print("ok")

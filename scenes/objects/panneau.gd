@@ -1,8 +1,9 @@
 extends Area2D
 
 
-signal tuto(text)
+signal tuto(text,param)
 export var text=""
+export var param:Dictionary
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -16,4 +17,4 @@ func _ready():
 
 func _on_panneau_body_entered(body):
 	if body is Player:
-		emit_signal("tuto",text)
+		emit_signal("tuto",text,param)

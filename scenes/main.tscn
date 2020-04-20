@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://scenes/levels/level1.tscn" type="PackedScene" id=1]
 [ext_resource path="res://main.gd" type="Script" id=2]
@@ -10,15 +10,15 @@
 [ext_resource path="res://asset/font/big_pixel.ttf" type="DynamicFontData" id=8]
 [ext_resource path="res://asset/buttons/text_box.png" type="Texture" id=9]
 
-[sub_resource type="DynamicFont" id=7]
+[sub_resource type="DynamicFont" id=1]
 size = 20
 outline_color = Color( 0.0392157, 0.0431373, 0.254902, 1 )
 font_data = ExtResource( 8 )
 
-[sub_resource type="Theme" id=8]
-default_font = SubResource( 7 )
+[sub_resource type="Theme" id=2]
+default_font = SubResource( 1 )
 
-[sub_resource type="ShaderMaterial" id=1]
+[sub_resource type="ShaderMaterial" id=3]
 shader = ExtResource( 5 )
 shader_param/offsetx = 0.0
 shader_param/offsety = 0.0
@@ -33,13 +33,12 @@ shader = ExtResource( 5 )
 shader_param/offsetx = 0.0
 shader_param/offsety = 0.0
 
-[sub_resource type="ShaderMaterial" id=3]
+[sub_resource type="ShaderMaterial" id=6]
 shader = ExtResource( 7 )
 shader_param/outline_width = 2.0
 shader_param/outline_color = null
 
-[sub_resource type="Animation" id=6]
-resource_name = "open"
+[sub_resource type="Animation" id=7]
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("CanvasLayer:offset")
@@ -55,6 +54,21 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=9]
+resource_name = "hide"
+tracks/0/type = "value"
+tracks/0/path = NodePath("tuto_cont/Panel:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1e-05, 1e-05 ) ]
+}
+
+[sub_resource type="Animation" id=8]
 resource_name = "open"
 length = 0.5
 tracks/0/type = "value"
@@ -81,24 +95,12 @@ tracks/1/keys = {
 "update": 1,
 "values": [ 2, 0 ]
 }
-tracks/2/type = "value"
-tracks/2/path = NodePath("tuto_cont:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 0.1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ false, true ]
-}
 
 [node name="main" type="Control"]
 pause_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
-theme = SubResource( 8 )
+theme = SubResource( 2 )
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -114,11 +116,12 @@ __meta__ = {
 
 [node name="bg" type="TextureRect" parent="."]
 modulate = Color( 1, 1, 1, 0.392157 )
-material = SubResource( 1 )
-margin_left = -111.0
-margin_top = 177.0
-margin_right = 513.0
-margin_bottom = 307.0
+material = SubResource( 3 )
+margin_left = -48.0
+margin_top = 205.0
+margin_right = 1248.0
+margin_bottom = 335.0
+rect_scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 3 )
 stretch_mode = 2
 __meta__ = {
@@ -127,9 +130,10 @@ __meta__ = {
 
 [node name="bg1" type="TextureRect" parent="."]
 material = SubResource( 4 )
-margin_top = 157.0
-margin_right = 512.0
-margin_bottom = 287.0
+margin_top = 170.0
+margin_right = 699.0
+margin_bottom = 300.0
+rect_scale = Vector2( 0.75, 0.75 )
 texture = ExtResource( 4 )
 stretch_mode = 2
 __meta__ = {
@@ -157,7 +161,7 @@ color = Color( 0.172549, 0.392157, 0.368627, 1 )
 
 [node name="ViewportContainer" type="ViewportContainer" parent="."]
 pause_mode = 1
-material = SubResource( 3 )
+material = SubResource( 6 )
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -184,12 +188,12 @@ transform = Transform2D( 1, 0, 0, 1, 0, 64 )
 
 [node name="anim_hud" type="AnimationPlayer" parent="."]
 playback_speed = 2.0
-anims/open = SubResource( 6 )
+anims/open = SubResource( 7 )
 
 [node name="tuto_cont" type="CenterContainer" parent="."]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -200,6 +204,7 @@ margin_top = 72.0
 margin_right = 384.0
 margin_bottom = 216.0
 rect_min_size = Vector2( 256, 144 )
+rect_scale = Vector2( 1e-05, 1e-05 )
 rect_pivot_offset = Vector2( 128, 72 )
 texture = ExtResource( 9 )
 patch_margin_left = 12
@@ -225,6 +230,8 @@ __meta__ = {
 }
 
 [node name="anim_indication" type="AnimationPlayer" parent="."]
+autoplay = "hide"
 playback_speed = 2.0
-anims/open = SubResource( 9 )
+anims/hide = SubResource( 9 )
+anims/open = SubResource( 8 )
 [connection signal="gui_input" from="tuto_cont" to="." method="_on_CenterContainer_gui_input"]
