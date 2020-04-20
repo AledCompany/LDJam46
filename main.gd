@@ -30,7 +30,7 @@ var levels=[
 	"objects":[3]},
 	{"scene":preload("res://scenes/levels/level2.tscn"),
 	"desc":"Oho",
-	"objects":[3,3]},
+	"objects":[8,4]},
 	{"scene":preload("res://scenes/levels/level3.tscn"),
 	"desc":"Jumpy Mountains",
 	"objects":[7,3]},
