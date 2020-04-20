@@ -18,7 +18,8 @@ enum State{
 	level,
 	after_level,
 	game_over,
-	restart
+	restart,
+	end
 }
 
 var current_level=0
@@ -34,6 +35,7 @@ var levels=[
 	"desc":"Jumpy Mountains",
 	"objects":[3,3]},
 	]
+
 var state=State.title
 
 func _ready():
@@ -85,7 +87,7 @@ func transition_change():
 		$game_over.visible=false
 		$after_level.visible=false
 		$before_level.visible=true
-		$before_level/label.text="Level "+str(current_level)
+		$before_level/label.text="Level "+str(current_level+1)
 		$before_level/label2.text=levels[current_level]["desc"]
 		state=State.before_level
 	elif state==State.before_level:
@@ -99,6 +101,9 @@ func transition_change():
 		$game_over.visible=true
 	elif state==State.restart:
 		get_tree().reload_current_scene()
+	elif state==State.end:
+		$after_level.visible=false
+		$demo_end.visible=true
 
 func set_level(id):
 	if $ViewportContainer/Viewport.get_child_count()>0:
@@ -175,6 +180,9 @@ func _on_button_next_pressed():
 	if levels.size()>current_level+1:
 		current_level+=1
 		state=State.title
+		$anim_transition.play("transition")
+	else:
+		state=State.end
 		$anim_transition.play("transition")
 
 func _pause():

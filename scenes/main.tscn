@@ -262,6 +262,30 @@ tracks/2/keys = {
 "update": 0,
 "values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 1.1, 1.1 ), Vector2( 1, 1 ) ]
 }
+tracks/3/type = "value"
+tracks/3/path = NodePath("title/Label:rect_position")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.7, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -40 ), Vector2( 0, -40 ), Vector2( 0, 0 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("title/Label2:rect_position")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.7, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 434, -40 ), Vector2( 434, -40 ), Vector2( 434, 0 ) ]
+}
 
 [node name="main" type="Control"]
 pause_mode = 2
@@ -414,9 +438,10 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -243.0
-margin_top = -81.0
+margin_top = -344.0
 margin_right = 243.0
-margin_bottom = 80.9999
+margin_bottom = -182.0
+rect_scale = Vector2( 1e-05, 1e-05 )
 rect_pivot_offset = Vector2( 243, 81 )
 texture = ExtResource( 16 )
 expand = true
@@ -430,6 +455,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = -88.0
 margin_bottom = -48.0
+rect_scale = Vector2( 1e-05, 1e-05 )
 rect_pivot_offset = Vector2( 256, 20 )
 custom_constants/separation = 32
 alignment = 1
@@ -455,6 +481,26 @@ margin_bottom = 40.0
 focus_mode = 0
 enabled_focus_mode = 0
 text = "Bye bye.."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="title"]
+margin_top = -40.0
+margin_right = 55.0
+margin_bottom = -20.0
+text = " Deakcor"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="title"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -78.0
+margin_top = -40.0
+margin_bottom = -20.0
+text = "Number6406 "
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -691,6 +737,76 @@ texture_normal = ExtResource( 14 )
 texture_pressed = ExtResource( 15 )
 texture_hover = ExtResource( 17 )
 
+[node name="demo_end" type="Control" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="bg" type="ColorRect" parent="demo_end"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color( 0.286275, 0.560784, 0.827451, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="demo_end"]
+anchor_right = 1.0
+margin_bottom = 108.0
+custom_fonts/font = SubResource( 21 )
+custom_colors/font_color_shadow = Color( 0.0470588, 0.0431373, 0.258824, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 4
+text = "End of demo"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="label3" type="Label" parent="demo_end"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -256.0
+margin_top = -144.0
+margin_right = 256.0
+margin_bottom = 144.0
+custom_fonts/font = SubResource( 22 )
+custom_colors/font_color = Color( 0.0470588, 0.0431373, 0.258824, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 2
+text = "Congratulations, 
+you delivered all the packages!"
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="demo_end"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -88.0
+margin_bottom = -48.0
+custom_constants/separation = 32
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="home" type="TextureButton" parent="demo_end/HBoxContainer"]
+margin_left = 236.0
+margin_right = 276.0
+margin_bottom = 40.0
+texture_normal = ExtResource( 14 )
+texture_pressed = ExtResource( 15 )
+texture_hover = ExtResource( 17 )
+
 [node name="pause" type="Control" parent="."]
 visible = false
 anchor_right = 1.0
@@ -781,6 +897,7 @@ anims/open = SubResource( 28 )
 [connection signal="pressed" from="after_level/HBoxContainer/home" to="." method="_on_home_pressed"]
 [connection signal="pressed" from="game_over/HBoxContainer/restart" to="." method="_on_restart_pressed"]
 [connection signal="pressed" from="game_over/HBoxContainer/home" to="." method="_on_home_pressed"]
+[connection signal="pressed" from="demo_end/HBoxContainer/home" to="." method="_on_home_pressed"]
 [connection signal="pressed" from="pause/HBoxContainer/button_continue" to="." method="_on_button_continue_pressed"]
 [connection signal="pressed" from="pause/HBoxContainer/restart" to="." method="_on_restart_pressed"]
 [connection signal="pressed" from="pause/HBoxContainer/home" to="." method="_on_home_pressed"]
