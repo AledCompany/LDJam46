@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/hit_flower.ogg-8b6414fb53bc6bfb0645220feade504d.oggstr"
+
+[deps]
+
+source_file="res://asset/sound/hit_flower.ogg"
+dest_files=[ "res://.import/hit_flower.ogg-8b6414fb53bc6bfb0645220feade504d.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

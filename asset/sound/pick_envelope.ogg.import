@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/pick_envelope.ogg-a0f65b2c73b8c9dda80276be56eb55a6.oggstr"
+
+[deps]
+
+source_file="res://asset/sound/pick_envelope.ogg"
+dest_files=[ "res://.import/pick_envelope.ogg-a0f65b2c73b8c9dda80276be56eb55a6.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
