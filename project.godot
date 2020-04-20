@@ -41,7 +41,6 @@ window/size/width=512
 window/size/height=288
 window/size/test_width=1024
 window/size/test_height=576
-mouse_cursor/custom_image="res://asset/buttons/souris.png"
 window/stretch/mode="viewport"
 window/stretch/aspect="keep"
 
