@@ -23,14 +23,14 @@ enum State{
 	end
 }
 
-var current_level=1
+var current_level=0
 
 var levels=[
 	{"scene":preload("res://scenes/levels/level1.tscn"),
 	"desc":"First delivery",
-	"objects":[3]},
+	"objects":[5]},
 	{"scene":preload("res://scenes/levels/level2.tscn"),
-	"desc":"Oho",
+	"desc":"holed path",
 	"objects":[8,4]},
 	{"scene":preload("res://scenes/levels/level3.tscn"),
 	"desc":"Jumpy Mountains",
@@ -41,6 +41,7 @@ var state=State.title
 
 func _ready():
 	$hud/Control/pause_button.connect("pressed",self,"_pause")
+	MusicManager.fade(load("res://asset/music/menu.ogg"),1,1)
 
 func _process(delta):
 	move_item_invoker()
@@ -99,8 +100,10 @@ func transition_change():
 	elif state==State.after_level:
 		$after_level.visible=true
 		$ViewportContainer/Viewport.get_child(0).queue_free()
+		MusicManager.fade(load("res://asset/music/menu.ogg"),1,1)
 	elif state==State.game_over:
 		$ViewportContainer/Viewport.get_child(0).queue_free()
+		MusicManager.fade(load("res://asset/music/menu.ogg"),1,1)
 		$game_over.visible=true
 	elif state==State.restart:
 		get_tree().reload_current_scene()
@@ -128,6 +131,7 @@ func set_level(id):
 	if id>0:
 		$anim_hud.play("open")
 	state=State.level
+	MusicManager.fade(load("res://asset/music/level.ogg"),1,1)
 
 func set_objects():
 	var objects=item_invoker.obj_left
@@ -174,6 +178,7 @@ func _on_restart_pressed():
 	$audio_button.play()
 	if $ViewportContainer/Viewport.get_child_count()>0:
 		$ViewportContainer/Viewport.get_child(0).queue_free()
+	MusicManager.fade(load("res://asset/music/menu.ogg"),1,1)
 	state=State.title
 	get_tree().paused=false
 	$pause.visible=false

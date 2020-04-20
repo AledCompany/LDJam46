@@ -35,6 +35,10 @@ _global_script_class_icons={
 config/name="Postcat"
 run/main_scene="res://scenes/main.tscn"
 
+[autoload]
+
+MusicManager="*res://scenes/music_manager.gd"
+
 [display]
 
 window/size/width=512
