@@ -23,37 +23,37 @@ __meta__ = {
 }
 
 [node name="ButtonTrampo" type="TextureButton" parent="Container"]
-margin_left = 433.0
-margin_right = 497.0
+margin_left = 49.0
+margin_right = 113.0
 margin_bottom = 64.0
 texture_normal = ExtResource( 1 )
 
 [node name="TextureButton2" type="TextureButton" parent="Container"]
-margin_left = 503.0
-margin_right = 567.0
+margin_left = 119.0
+margin_right = 183.0
 margin_bottom = 64.0
 texture_normal = ExtResource( 1 )
 
 [node name="TextureButton3" type="TextureButton" parent="Container"]
-margin_left = 573.0
-margin_right = 637.0
+margin_left = 189.0
+margin_right = 253.0
 margin_bottom = 64.0
 texture_normal = ExtResource( 1 )
 
 [node name="TextureButton4" type="TextureButton" parent="Container"]
-margin_left = 643.0
-margin_right = 707.0
+margin_left = 259.0
+margin_right = 323.0
 margin_bottom = 64.0
 texture_normal = ExtResource( 1 )
 
 [node name="TextureButton5" type="TextureButton" parent="Container"]
-margin_left = 713.0
-margin_right = 777.0
+margin_left = 329.0
+margin_right = 393.0
 margin_bottom = 64.0
 texture_normal = ExtResource( 1 )
 
 [node name="TextureButton6" type="TextureButton" parent="Container"]
-margin_left = 783.0
-margin_right = 847.0
+margin_left = 399.0
+margin_right = 463.0
 margin_bottom = 64.0
 texture_normal = ExtResource( 1 )

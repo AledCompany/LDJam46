@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://asset/buttons/test_button_pressed.png" type="Texture" id=1]
-[ext_resource path="res://asset/buttons/test_button.png" type="Texture" id=2]
+[ext_resource path="res://asset/buttons/button_wool.png" type="Texture" id=1]
+[ext_resource path="res://asset/buttons/button_wool_pressed.png" type="Texture" id=2]
 [ext_resource path="res://asset/buttons/button_trampo.png" type="Texture" id=3]
 [ext_resource path="res://asset/buttons/button_trampo_pressed.png" type="Texture" id=4]
 
@@ -40,5 +40,5 @@ margin_left = 264.0
 margin_right = 304.0
 margin_bottom = 40.0
 action_mode = 0
-texture_normal = ExtResource( 2 )
-texture_pressed = ExtResource( 1 )
+texture_normal = ExtResource( 1 )
+texture_pressed = ExtResource( 2 )
