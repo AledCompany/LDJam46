@@ -1,12 +1,9 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=22 format=2]
 
-[ext_resource path="res://scenes/objects/Trampoline.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/objects/ItemInvoker.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://icon.png" type="Texture" id=4]
 [ext_resource path="res://asset/decors/sol.png" type="Texture" id=5]
-[ext_resource path="res://scenes/traps/FlowerPot.tscn" type="PackedScene" id=6]
-[ext_resource path="res://scenes/objects/Wool.tscn" type="PackedScene" id=8]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 64, 64, 0, 64, 0, 0, 64, 0 )
@@ -193,10 +190,15 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 } ]
 1/z_index = 0
 
-[sub_resource type="RectangleShape2D" id=18]
-extents = Vector2( 5651.44, 765.667 )
-
 [node name="World" type="Node2D"]
+
+[node name="TileMap2" type="TileMap" parent="."]
+modulate = Color( 0.47451, 0.811765, 0.803922, 1 )
+tile_set = SubResource( 17 )
+cell_size = Vector2( 32, 32 )
+collision_layer = 0
+collision_mask = 0
+format = 1
 
 [node name="objects" type="Node2D" parent="."]
 
@@ -206,35 +208,18 @@ cell_size = Vector2( 32, 32 )
 collision_layer = 3
 collision_mask = 3
 format = 1
-tile_data = PoolIntArray( 262152, 1, 196609, 262153, 1, 196611, 327693, 1, 196609, 327694, 1, 196610, 327695, 1, 196610, 327696, 1, 196611, 458752, 1, 1, 458753, 1, 2, 458754, 1, 2, 458755, 1, 2, 458756, 1, 3, 458759, 1, 1, 458760, 1, 2, 458761, 1, 2, 458762, 1, 2, 458763, 1, 2, 458764, 1, 2, 458765, 1, 2, 458766, 1, 2, 458767, 1, 2, 458768, 1, 2, 458769, 1, 2, 458770, 1, 2, 458771, 1, 3, 524288, 1, 131073, 524289, 1, 131074, 524290, 1, 131074, 524291, 1, 131074, 524292, 1, 131075, 524295, 1, 131073, 524296, 1, 131074, 524297, 1, 131074, 524298, 1, 131074, 524299, 1, 131074, 524300, 1, 131074, 524301, 1, 131074, 524302, 1, 131074, 524303, 1, 131074, 524304, 1, 131074, 524305, 1, 131074, 524306, 1, 131074, 524307, 1, 131075 )
+tile_data = PoolIntArray( 0, 1, 196609, 1, 1, 196610, 2, 1, 196611 )
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
-position = Vector2( 18, 213 )
+position = Vector2( 64, -12 )
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
-offset = Vector2( 125, 0 )
+position = Vector2( 100, 0 )
 current = true
-zoom = Vector2( 0.33, 0.33 )
-process_mode = 0
+limit_left = 0
+limit_top = -1000000
+limit_bottom = 64
 smoothing_enabled = true
 
-[node name="Trampoline" parent="." instance=ExtResource( 1 )]
-position = Vector2( 1378.3, 448.348 )
-
-[node name="Trampoline2" parent="." instance=ExtResource( 1 )]
-position = Vector2( 141, 219 )
-
-[node name="DeathZone" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DeathZone"]
-position = Vector2( 4513.58, 1732.52 )
-shape = SubResource( 18 )
-
-[node name="FlowerPot" parent="." instance=ExtResource( 6 )]
-position = Vector2( 269, 123 )
-
-[node name="Wool" parent="." instance=ExtResource( 8 )]
-position = Vector2( 296, 214 )
-
-[node name="ItemInvoker" parent="." instance=ExtResource( 2 )]
-[connection signal="body_entered" from="DeathZone" to="Player" method="_on_DeathZone_body_entered"]
+[node name="ItemInvoker" parent="Player/Camera2D" instance=ExtResource( 2 )]
+position = Vector2( -18, -213 )
