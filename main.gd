@@ -23,7 +23,8 @@ enum State{
 
 var current_level=0
 
-var levels=[{"scene":preload("res://scenes/levels/level1.tscn"),"desc":"First delivery"}]
+var levels=[{"scene":preload("res://scenes/levels/level1.tscn"),"desc":"First delivery"},
+			{"scene":preload("res://scenes/levels/level3.tscn"),"desc":"Jumpy Mountains"}]
 var state=State.title
 
 func _ready():
